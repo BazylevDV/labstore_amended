@@ -1,0 +1,11 @@
+{% extends 'fourth_task/menu.html' %}
+
+{% block content %}
+    <h2>{{ pagename }}</h2>
+    <p>{{ content }}</p>
+    <ul>
+        {% for key, value in items.items %}
+            <li>{{ value.name }} - {{ value.description }} - {{ value.price }} руб.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Магазин</title>
+</head>
+<body>
+    <h1>Магазин</h1>
+    <ul>
+        {% for key, value in items.items %}
+            <li>
+                <strong>{{ value.name }}</strong>
+                <p>{{ value.description }}</p>
+                <p>Цена: {{ value.price }} руб.</p>
+                <button>Купить</button>
+            </li>
+        {% endfor %}
+    </ul>
+    <button onclick="window.location.href='{% url 'labtorg' %}'">Вернуться на главную</button>
+</body>
+</html>

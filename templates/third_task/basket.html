@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+</head>
+<body>
+    <h1>Корзина</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Описание</th>
+                <th>Цена</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.description }}</td>
+                    <td>{{ item.price }} руб.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p>Общая стоимость:
+        {% with total=0 %}
+            {% for item in cart_items %}
+                {% with total=total|add:item.price %}
+                {% endwith %}
+            {% endfor %}
+            {{ total }} руб.
+        {% endwith %}
+    </p>
+    <button onclick="window.location.href='{% url 'labtorg' %}'">Вернуться на главную</button>
+</body>
+</html>
