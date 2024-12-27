@@ -23,4 +23,5 @@ urlpatterns = [
     path('', include('task4.urls')),  # Главная страница (пустой путь)
     path('task4/', include('task4.urls')),  # Маршруты для task4
     path('task5/', include('task5.urls')),  # Маршруты для task5
+    path('task1/', include('task1.urls')),  # Маршруты для task1
 ]

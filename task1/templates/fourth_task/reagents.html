@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Реагенты</title>
+</head>
+<body>
+    <h1>Реагенты</h1>
+    <p>Количество товаров: {{ products|length }}</p>  <!-- Отладочный вывод -->
+    <p>Здесь вы можете найти наши реагенты.</p>
+    <ul>
+        {% for product in products %}
+            <li>
+                {{ product.name }} | {{ product.description }}. Стоимость: {{ product.price }} руб.
+                <button>Добавить в корзину</button>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
