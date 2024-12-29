@@ -2,14 +2,11 @@ from django.contrib import admin
 
 # Register your models here.
 from django.contrib import admin
-from .models import Product, User
+from .models import  User
+from .models import Product
 
-@admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'description')  # Отображаемые поля
-    list_filter = ('price', 'name')  # Фильтрация по полям
-    search_fields = ('name',)  # Поиск по полю
-    list_per_page = 20  # Ограничение количества записей
+admin.site.register(Product)
+
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):

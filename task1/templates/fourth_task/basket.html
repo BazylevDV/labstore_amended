@@ -1,11 +1,20 @@
-{% extends 'fourth_task/menu.html' %}
-
-{% block content %}
-    <h2>{{ pagename }}</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+</head>
+<body>
+    <h1>{{ pagename }}</h1>
     <p>{{ content }}</p>
     <ul>
         {% for item in cart_items %}
-            <li>{{ item.name }} - {{ item.description }} - {{ item.price }} руб.</li>
+            <li>
+                <strong>{{ item.name }}</strong><br>
+                {{ item.description }}<br>
+                Цена: {{ item.price|floatformat:2 }} руб.
+            </li>
         {% endfor %}
     </ul>
-{% endblock %}
+</body>
+</html>

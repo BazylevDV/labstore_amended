@@ -1,18 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Реагенты</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ pagename }}</title>
 </head>
 <body>
-    <h1>Реагенты</h1>
-    <p>Количество товаров: {{ products|length }}</p>  <!-- Отладочный вывод -->
-    <p>Здесь вы можете найти наши реагенты.</p>
+    <h1>{{ pagename }}</h1>
+    <p>{{ content }}</p>
     <ul>
         {% for product in products %}
             <li>
-                {{ product.name }} | {{ product.description }}. Стоимость: {{ product.price }} руб.
-                <button>Добавить в корзину</button>
+                <strong>{{ product.name }}</strong><br>
+                Описание: {{ product.description }}<br>
+                Цена: {{ product.price }} руб.<br>
+                <form action="{% url 'buy' product.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Купить</button>
+                </form>
             </li>
         {% endfor %}
     </ul>

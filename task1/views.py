@@ -3,12 +3,16 @@ from django.http import HttpRequest, HttpResponse
 from .forms import UserRegister  # Импортируем форму UserRegister
 from django.db.models import Model
 from .models import User, Product
-
+from django.shortcuts import get_object_or_404, redirect
 User: Model
 
 
-# Убедись, что PyCharm понимает, что User — это модель
-User: Model
+def buy(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    # Здесь можно добавить логику для обработки покупки
+    # Например, добавление товара в корзину или создание заказа
+    return redirect('reagents')  # Перенаправляем обратно на страницу с реагентами
+
 
 def labtorg(request):
     context = {
@@ -17,15 +21,15 @@ def labtorg(request):
     }
     return render(request, 'fourth_task/labtorg.html', context)
 
+
 def reagents(request):
     products = Product.objects.all()
-    print(f"Количество товаров: {products.count()}")  # Отладочный вывод в консоль
     context = {
         'pagename': 'Реагенты',
         'content': 'Здесь вы можете найти наши реагенты.',
-        'products': products,  # Передаем коллекцию товаров в контекст
+        'products': products,
     }
-    return render(request, 'fourth_task/reagents.html', context)
+    return render(request, 'fourth_task/reagents.html', context)  #
 
 def basket(request):
     cart_items = [
@@ -51,6 +55,7 @@ def basket(request):
         'cart_items': cart_items,
     }
     return render(request, 'fourth_task/basket.html', context)
+
 
 def sign_up_by_django(request: HttpRequest):
     # Пустой словарь для передачи в context
@@ -79,7 +84,8 @@ def sign_up_by_django(request: HttpRequest):
         form = UserRegister()
 
     info["form"] = form
-    return render(request, "fifth_task/registration_page.html", info)
+    return render(request, "fourth_task/registration_page.html", info)
+
 
 def sign_up_by_html(request: HttpRequest):
     # Пустой словарь для передачи в context
@@ -103,4 +109,4 @@ def sign_up_by_html(request: HttpRequest):
             User.objects.create(username=username, password=password, age=int(age))
             return HttpResponse(f"Приветствуем, {username}!")
 
-    return render(request, "fifth_task/registration_page.html", info)
+    return render(request, "fourth_task/registration_page.html", info)
