@@ -5,6 +5,9 @@ from django.db.models import Model
 from .models import User, Product
 from django.shortcuts import get_object_or_404, redirect
 User: Model
+from django.core.paginator import Paginator
+from django.shortcuts import render
+from .models import News
 
 
 def buy(request, product_id):
@@ -110,3 +113,23 @@ def sign_up_by_html(request: HttpRequest):
             return HttpResponse(f"Приветствуем, {username}!")
 
     return render(request, "fourth_task/registration_page.html", info)
+
+
+def news(request):
+    # Получаем все новости из базы данных, отсортированные по дате (новые сначала)
+    news_list = News.objects.all().order_by('-date')
+
+    # Создаем объект Paginator, указывая количество элементов на странице
+    paginator = Paginator(news_list, 5)  # 5 новостей на странице
+
+    # Получаем номер текущей страницы из параметра запроса (например, ?page=2)
+    page_number = request.GET.get('page')
+
+    # Получаем объект страницы
+    page_obj = paginator.get_page(page_number)
+
+    # Передаем объект страницы в контекст шаблона
+    context = {
+        'page_obj': page_obj,
+    }
+    return render(request, 'fourth_task/news.html', context)  # Обновленный путь к шаблону

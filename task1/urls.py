@@ -8,5 +8,7 @@ urlpatterns = [
     path('basket/', views.basket, name='basket'),  # Маршрут для страницы basket
     path('sign_up_by_django/', views.sign_up_by_django, name='sign_up_by_django'),  # Маршрут для регистрации через Django
     path('sign_up_by_html/', views.sign_up_by_html, name='sign_up_by_html'),  # Маршрут для регистрации через HTML
+    path('platform/news/', views.news, name='news'),
 
 ]
+
